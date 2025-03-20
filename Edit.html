@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Product</title>
+
+    </head>
+<body>
+
+<h2 style="text-align: center;">Edit Product</h2>
+
+<div class="form-container" th:if="${product != null}">
+	<form th:action="@{/updateproduct/{id}(id=${id})}" th:object="${products}" method="post">
+
+    
+        <input type="hidden" th:field="*{id}" />
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" placeholder="Enter product name" required />
+
+        <label for="price">Price</label>
+        <input type="number" th:field="*{price}" id="price" placeholder="Enter product price" required oninput="calculateTotalAndTax()" />
+
+        <label for="quantity">Quantity</label>
+        <input type="number" th:field="*{quantity}" id="quantity" placeholder="Enter product quantity" required oninput="calculateTotalAndTax()" />
+
+        <label for="brand">Brand</label>
+        <input type="text" th:field="*{brand}" id="brand" placeholder="Enter product brand" required />
+
+        <label for="madein">Made In</label>
+        <input type="text" th:field="*{madein}" id="madein" placeholder="Enter product country of origin" required />
+
+      
+        <button type="submit">Update Product</button>
+    </form>
+</div>
+
+<div class="back-link">
+    <a href="/productlist">Back to Product List</a>
+</div>
+
+
+
+</body>
+</html>
